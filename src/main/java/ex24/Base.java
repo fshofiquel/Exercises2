@@ -4,22 +4,52 @@
  */
 package ex24;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Base
 {
+    static Scanner input = new Scanner(System.in);
+
     public static void main(String[] args)
     {
+        Base myBase = new Base();
         String wordOne;
         String wordTwo;
-        Scanner input = new Scanner(System.in);
+        boolean tF;
+
+        System.out.println("Enter two strings and I'll tell you if they are anagrams:");
+        System.out.print("Enter the first string: ");
+        wordOne = input.nextLine();
 
 
+        System.out.print("Enter the second string: ");
+        wordTwo = input.nextLine();
+
+        tF = myBase.isString(wordOne, wordTwo);
+
+        if (tF)
+            System.out.print("\"" + wordOne + "\"" + " and \"" + wordTwo + "\" are anagrams.");
+        else
+            System.out.print("\"" + wordOne + "\"" + " and \"" + wordTwo + "\" are not anagrams.");
     }
 
-    public static String isString(String wordOne, String wordTwo)
+    public boolean isString(String wordOne, String wordTwo)
     {
-        return null;
+        char[] stringOne = wordOne.toLowerCase().toCharArray();
+        char[] stringTwo = wordTwo.toLowerCase().toCharArray();
+
+        if (wordOne.length() != wordTwo.length())
+        {
+            return false;
+        }
+
+        else
+        {
+            Arrays.sort(stringOne);
+            Arrays.sort(stringTwo);
+            return Arrays.equals(stringOne, stringTwo);
+        }
     }
 
 }
