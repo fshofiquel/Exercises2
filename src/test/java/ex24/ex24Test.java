@@ -4,13 +4,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class BaseTest
+class ex24Test
 {
 
     @Test
     public void output_anagrams()
     {
-        Base myBase = new Base();
+        ex24 myBase = new ex24();
         boolean correct = true;
         boolean wrong = false;
 

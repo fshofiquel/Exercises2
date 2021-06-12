@@ -7,13 +7,13 @@ package ex24;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Base
+public class ex24
 {
     static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args)
     {
-        Base myBase = new Base();
+        ex24 myEx24 = new ex24();
         String wordOne;
         String wordTwo;
         boolean tF;
@@ -26,7 +26,7 @@ public class Base
         System.out.print("Enter the second string: ");
         wordTwo = input.nextLine();
 
-        tF = myBase.isString(wordOne, wordTwo);
+        tF = myEx24.isString(wordOne, wordTwo);
 
         if (tF)
             System.out.print("\"" + wordOne + "\"" + " and \"" + wordTwo + "\" are anagrams.");
