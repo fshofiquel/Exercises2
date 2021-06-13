@@ -1,22 +1,24 @@
 package ex25;
 
+import javafx.css.Match;
+
 import java.util.Scanner;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ex25
 {
-    Scanner inputString = new Scanner(System.in);
     public static passwordValidator newPassword = new passwordValidator();
-
+    Scanner inputString = new Scanner(System.in);
 
     public static void main(String[] args)
     {
         int checker;
-        newPassword.password = "abcefg";
+        newPassword.password = "1337h@xor!";
 
         checker = newPassword.passwordStrength(newPassword.password);
 
-        System.out.printf("This should be 0 %d", checker);
+        System.out.printf("This should be %d", checker);
     }
 }
 
@@ -28,29 +30,50 @@ class passwordValidator
     {
         int length;
         char[] arrayForm;
-        int i = 5;
+        int i = -1;
+        int numOfNums = 0;
+        boolean num;
+        boolean wrd;
+        boolean spCh;
 
-        Pattern numbers = Pattern.compile("[/d]");
-        Pattern words = Pattern.compile("[/w]");
+        Pattern numbers = Pattern.compile("\\d+");
+        Pattern words = Pattern.compile("\\w+");
+        Pattern spChar = Pattern.compile("\\p{all}");
+
+        Matcher match = numbers.matcher(password);
+        num = match.matches();
+
+        match = words.matcher(password);
+        wrd = match.matches();
+
+        match = spChar.matcher(password);
+        spCh = match.matches();
+
 
         arrayForm = password.toCharArray();
         length = password.length();
 
         if (length < 8)
         {
-            if (password.matches(".*[0-9]+.*"))
+            if (num)
                 return 0;
-            if (password.matches(".*[a-zA-Z]+.*"))
+            if (wrd)
                 return 1;
         }
 
-        /*if (length >= 8)
+        if (length >= 8)
         {
-            if (password.matches(".*[a-zA-Z]+.*"))
+            if (wrd)
             {
-
+                for (i = 0; i < length; i++)
+                    if (Character.isDigit(arrayForm[i]))
+                        numOfNums++;
+                if (numOfNums >= 1)
+                    return 3;
+                else
+                    return 4;
             }
-        }*/
+        }
 
         return i;
     }
